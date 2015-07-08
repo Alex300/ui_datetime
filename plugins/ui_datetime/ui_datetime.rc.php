@@ -63,7 +63,7 @@ if (cot::$cfg['jquery'] && ($uidt_cfg['enable_datepicker'] || $uidt_cfg['enable_
                 Resources::$rc_link_func($lang_file);
             }
             if ($uidt_cfg['support_touch']) {
-                Resources::$rc_link_func($timepicker_path . "/jquery-ui-sliderAccess.min.js");
+                Resources::$rc_link_func($timepicker_path . "/jquery-ui-sliderAccess.js");
             }
         } else {
             $ui_off_code = 'var ui_time_off = true;';
