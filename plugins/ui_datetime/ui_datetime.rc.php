@@ -40,8 +40,8 @@ if (cot::$cfg['jquery'] && ($uidt_cfg['enable_datepicker'] || $uidt_cfg['enable_
 
         if ($_GET['m'] == 'other' && $_GET['p']) $admintools = true;
 
-        Resources::$rc_link_func($uidt_cfg['jquery_ui_js']);
-        Resources::addFile($uidt_cfg['jquery_ui_css']);
+        Resources::$rc_link_func($uidt_cfg['jquery_ui_js'], 'js', 60);
+        Resources::addFile($uidt_cfg['jquery_ui_css'], 'css', 60);
 
         if (cot::$usr['lang'] != 'en') {
             if ($uidt_cfg['enable_datepicker']) {
@@ -50,30 +50,30 @@ if (cot::$cfg['jquery'] && ($uidt_cfg['enable_datepicker'] || $uidt_cfg['enable_
                 if (!file_exists($lang_file)) {
                     $lang_file = './js/jquery_ui/i18n/jquery.ui.datepicker-'.cot::$usr['lang'].'.js';
                 }
-                Resources::$rc_link_func($lang_file);
+                Resources::$rc_link_func($lang_file, 'js', 60);
             }
         }
 
         if ($uidt_cfg['enable_timepicker']) {
             $timepicker_path = pathinfo($uidt_cfg['timepicker_js'],PATHINFO_DIRNAME);
             Resources::addFile($uidt_cfg['timepicker_css'], 'css', 70);
-            Resources::$rc_link_func ($uidt_cfg['timepicker_js']);
+            Resources::$rc_link_func ($uidt_cfg['timepicker_js'], 'js', 70);
             if ($usr['lang'] != 'en') {
                 $lang_file = $timepicker_path . "/i18n/jquery-ui-timepicker-{$usr['lang']}.js";
-                Resources::$rc_link_func($lang_file);
+                Resources::$rc_link_func($lang_file, 'js', 70);
             }
             if ($uidt_cfg['support_touch']) {
-                Resources::$rc_link_func($timepicker_path . "/jquery-ui-sliderAccess.js");
+                Resources::$rc_link_func($timepicker_path . "/jquery-ui-sliderAccess.js", 'js', 70);
             }
         } else {
             $ui_off_code = 'var ui_time_off = true;';
         }
         if (!$uidt_cfg['enable_datepicker']) $ui_off_code .= 'var ui_date_off = true;';
 
-        Resources::$rc_link_func(cot::$cfg['plugins_dir']."/$plug_name/js/$plug_name.js");
+        Resources::$rc_link_func(cot::$cfg['plugins_dir']."/$plug_name/js/$plug_name.js", 'js', 70);
 
         if ($admintools) {
-            Resources::$rc_link_func(cot::$cfg['plugins_dir']."/$plug_name/js/$plug_name.tools.js");
+            Resources::$rc_link_func(cot::$cfg['plugins_dir']."/$plug_name/js/$plug_name.tools.js", 'js', 70);
         }
 
         if ($ui_off_code) Resources::embed($plug_name , $ui_off_code);
