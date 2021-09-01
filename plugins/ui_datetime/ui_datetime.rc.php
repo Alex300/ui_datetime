@@ -27,18 +27,20 @@ $plug_name = 'ui_datetime';
 
 $uidt_cfg = cot::$cfg['plugin'][$plug_name];
 
+$m = cot_import('m', 'G', 'ALP', 24);
+
 if (cot::$cfg['jquery'] && ($uidt_cfg['enable_datepicker'] || $uidt_cfg['enable_timepicker'])){
 	if ($uidt_cfg['global_mode']
 		|| ( $_GET['e'] == $plug_name
-			|| ( $_GET['e'] == 'page' && ($_GET['m'] == 'edit' || $_GET['m'] == 'add' ))
-			|| ( $_GET['e'] == 'users' && ($_GET['m'] == 'edit' || $_GET['m'] == 'profile' ))
-			|| ( $_GET['m'] == 'other' && $_GET['p'] == $plug_name )
+			|| ( $_GET['e'] == 'page' && ($m == 'edit' || $m == 'add' ))
+			|| ( $_GET['e'] == 'users' && ($m == 'edit' || $m == 'profile' ))
+			|| ( $m == 'other' && $_GET['p'] == $plug_name )
 			|| ( $_GET['e'] == 'search' )
 		)) {
 
         $rc_link_func = (cot::$cfg['headrc_consolidate'] && cot::$cache) ? 'addFile' : 'linkFileFooter';
 
-        if ($_GET['m'] == 'other' && $_GET['p']) $admintools = true;
+        if ($m == 'other' && isset($_GET['p'])) $admintools = true;
 
         Resources::$rc_link_func($uidt_cfg['jquery_ui_js'], 'js', 60);
         Resources::addFile($uidt_cfg['jquery_ui_css'], 'css', 60);
@@ -46,7 +48,7 @@ if (cot::$cfg['jquery'] && ($uidt_cfg['enable_datepicker'] || $uidt_cfg['enable_
         if (cot::$usr['lang'] != 'en') {
             if ($uidt_cfg['enable_datepicker']) {
                 $lang_file_path = pathinfo($uidt_cfg['jquery_ui_js'],PATHINFO_DIRNAME);
-                $lang_file = $lang_file_path."/i18n/jquery.ui.datepicker-{$usr['lang']}.js";
+                $lang_file = $lang_file_path."/i18n/jquery.ui.datepicker-".cot::$usr['lang'].".js";
                 if (!file_exists($lang_file)) {
                     $lang_file = './js/jquery_ui/i18n/jquery.ui.datepicker-'.cot::$usr['lang'].'.js';
                 }
@@ -54,12 +56,13 @@ if (cot::$cfg['jquery'] && ($uidt_cfg['enable_datepicker'] || $uidt_cfg['enable_
             }
         }
 
+        $ui_off_code = '';
         if ($uidt_cfg['enable_timepicker']) {
             $timepicker_path = pathinfo($uidt_cfg['timepicker_js'],PATHINFO_DIRNAME);
             Resources::addFile($uidt_cfg['timepicker_css'], 'css', 70);
             Resources::$rc_link_func ($uidt_cfg['timepicker_js'], 'js', 70);
-            if ($usr['lang'] != 'en') {
-                $lang_file = $timepicker_path . "/i18n/jquery-ui-timepicker-{$usr['lang']}.js";
+            if (cot::$usr['lang'] != 'en') {
+                $lang_file = $timepicker_path . "/i18n/jquery-ui-timepicker-".cot::$usr['lang'].".js";
                 Resources::$rc_link_func($lang_file, 'js', 70);
             }
             if ($uidt_cfg['support_touch']) {
@@ -72,10 +75,10 @@ if (cot::$cfg['jquery'] && ($uidt_cfg['enable_datepicker'] || $uidt_cfg['enable_
 
         Resources::$rc_link_func(cot::$cfg['plugins_dir']."/$plug_name/js/$plug_name.js", 'js', 70);
 
-        if ($admintools) {
+        if (!empty($admintools)) {
             Resources::$rc_link_func(cot::$cfg['plugins_dir']."/$plug_name/js/$plug_name.tools.js", 'js', 70);
         }
 
-        if ($ui_off_code) Resources::embed($plug_name , $ui_off_code);
+        if ($ui_off_code) Resources::embed($ui_off_code);
 	}
 }

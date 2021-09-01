@@ -5,10 +5,10 @@ Code=ui_datetime
 Name=UI date/time picker
 Category=customization-i18n
 Description=Replaces common date/time dropdown select boxes with usefull jQuery UI date/time picker
-Version=1.7.3-1.10.3
-Date=2015 june 27
+Version=1.7.4-1.10.3
+Date=Aug 27, 2021
 Author=Andrey Matsovkin, Kalnov Alexey    <kalnovalexey@yandex.ru>
-Copyright=Copyright (c) 2008-2013, Andrey Matsovkin, 2015 Portal30 Studio http://portal30.ru
+Copyright=Copyright (c) 2008-2013, Andrey Matsovkin, 2013-2021 Lily Software https://lily-software.com (ex. Portal30 Studio)
 Notes=
 Auth_guests=R
 Lock_guests=W2345A
@@ -36,8 +36,8 @@ combined=19:radio:0,1:0:Enable `combined` mode by default
  * @package ui_datetime
  * @author Andrey Matsovkin
  * @author Kalnov Alexey    <kalnovalexey@yandex.ru>
- * @copyright Copyright (c) 2008-2013
- * @copyright Copyright (c) 2015 Portal30 Studio http://portal30.ru
+ * @copyright Copyright (c) 2008-2013 Andrey Matsovkin
+ * @copyright Copyright (c) 2013-2021 Lily Software https://lily-software.com (ex. Portal30 Studio)
  *
  * @license Distributed under BSD License.
  */
