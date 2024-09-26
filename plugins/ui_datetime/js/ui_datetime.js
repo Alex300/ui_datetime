@@ -101,10 +101,16 @@ function enable_datetime_picker($dt_block){
 	var classes = $dt_block.attr('class').split(' '),
 		mode = 0;
 		valDay = 0, valMonth = 0, valYear = 0, valHour = 0, valMinute = 0;
-	if (classes.indexOf('mode-date')>-1 && !ui_date_off) mode = 1;
-	if (classes.indexOf('mode-time')>-1 && !ui_time_off) mode = 2;
-	if (classes.indexOf('mode-datetime')>-1) mode = 3;
-	if (classes.indexOf('mode-datetime-combined')>-1) {
+	if (classes.indexOf('mode-date') > -1 && !ui_date_off) {
+		mode = 1;
+	}
+	if (classes.indexOf('mode-time') > -1 && !ui_time_off) {
+		mode = 2;
+	}
+	if (classes.indexOf('mode-datetime') > -1) {
+		mode = 3;
+	}
+	if (classes.indexOf('mode-datetime-combined') > -1) {
 		if (ui_date_off || ui_time_off) mode = 3;
 		else mode = 4;
 	}
@@ -113,6 +119,7 @@ function enable_datetime_picker($dt_block){
 		$dt_block.find('.common_time').show();
 		return;
 	}
+
 	if (mode != 2) { // for all date modes
 		var date_control = $dt_block.find("div.common_date"),
 			dateToSet = $dt_block.data('setDate'),
@@ -136,7 +143,9 @@ function enable_datetime_picker($dt_block){
 			} else {
 				var $date_target = $dt_block.find('.date_target');
 			}
-			if (!ui_date_off) $date_target.append(date_input);
+			if (!ui_date_off) {
+				$date_target.append(date_input);
+			}
 			var $datepicker = $('#'+date_input_id);
 			((date_control.data('show') == 'source') || ui_date_off) ? date_control.show() : date_control.hide();
 			var valDay   = elDay.val(),
@@ -156,7 +165,7 @@ function enable_datetime_picker($dt_block){
 				minDate = new Date(minYear,0,1);
 		}
 	}
-	if (mode!=1){ // for all modes with timepicker
+	if (mode != 1) { // for all modes with timepicker
 		var time_control = $dt_block.find("div.common_time"),
 			elHour = time_control.find('select').filter("[name*='hour']"),
 			elMinute = time_control.find('select').filter("[name*='minute']");
@@ -198,7 +207,7 @@ function enable_datetime_picker($dt_block){
 		dateObj = new Date(Date.now() + dateToSet * 1000);
 	}
 	// initializing datepicker, timepicker or combined input
-	if (mode==4 && !(ui_date_off || ui_time_off)){ // combined mode datetime picker
+	if (mode == 4 && !(ui_date_off || ui_time_off)){ // combined mode datetime picker
 			function syncDateTime(dateText, inst, $this){
 				if (!dateText){
 					$this.val('');
@@ -253,7 +262,7 @@ function enable_datetime_picker($dt_block){
 				$date_target.append($fmt );
 			}
 		}
-	if ((mode==2 || mode==3) && !ui_time_off) { // time picker
+	if ((mode == 2 || mode == 3) && !ui_time_off) { // time picker
 		function syncTime($this){
 			var newtime = parse_time($this.val());
 			if (newtime && newtime.length == 3 ) {
@@ -287,7 +296,7 @@ function enable_datetime_picker($dt_block){
 			$time_target.append($fmt);
 		}
 	}
-	if ((mode==1 || mode==3) && !(ui_date_off)) { // date picker
+	if ((mode == 1 || mode == 3) && !(ui_date_off)) { // date picker
 		function validDate(dateStr){
 			defDate = new Date(-100800000); //'12/31/1969');
 			$testDP = $('<input>').val(dateStr).datepicker({defaultDate:defDate});
@@ -330,7 +339,9 @@ function enable_datetime_picker($dt_block){
 		$datepicker.change(function(){
 			syncDate($datepicker.val(), null, $(this));
 		});
-		if (!$datepicker.attr('title')) $datepicker.attr('title',formatStr+$datepicker.datepicker( "option", "dateFormat" ));
+		if (!$datepicker.attr('title')) {
+			$datepicker.attr('title',formatStr+$datepicker.datepicker( "option", "dateFormat" ));
+		}
 		if (dateObj) {
 			$datepicker.datepicker('setDate',dateObj);
 			$datepicker.datepicker( "option", "defaultDate", dateObj );
@@ -343,9 +354,15 @@ function enable_datetime_picker($dt_block){
 	}
 	function updateNewUI(dateObj){
 		if (dateObj) {
-			if (mode==1 || mode==3) $datepicker.datepicker('setDate',dateObj);
-			if (mode==2 || mode==3) $timepicker.timepicker('setDate',dateObj);
-			if (mode==4) $datepicker.datetimepicker('setDate',dateObj);
+			if (mode == 1 || mode == 3) {
+				$datepicker.datepicker('setDate', dateObj);
+			}
+			if (mode == 2 || mode == 3) {
+				$timepicker.timepicker('setDate', dateObj);
+			}
+			if (mode == 4) {
+				$datepicker.datetimepicker('setDate', dateObj);
+			}
 		}
 	}
 
