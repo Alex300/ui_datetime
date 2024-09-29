@@ -4,7 +4,7 @@ UI_datetime
 Plugin for Cotonti CMF. It replaces common date/time selection controls with
 unified pretty style jQueryUI controls.
 
-Based on pligin by Andrey Matsovkin (Macik): https://github.com/macik
+Based on plugin by Andrey Matsovkin (Macik): https://github.com/macik
 But this one has fixes and new versions of included scripts
 
 Description
