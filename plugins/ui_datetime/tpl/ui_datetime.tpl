@@ -15,5 +15,5 @@
 # In NEWINPUT you can alter template that should be used for new datetime input field
 # Note! You can wrap it with addition tags, add more classes but class `ui_input_tpl` should be present in input field anyway.
 <!-- BEGIN: NEWINPUT -->
-<input class="ui_input_tpl form-control" type="text" value="" autocomplete="off" /></div>
+<input class="ui_input_tpl form-control" type="text" value="" autocomplete="off" />
 <!-- END: NEWINPUT -->
