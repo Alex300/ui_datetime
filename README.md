@@ -1,11 +1,13 @@
 UI_datetime 
 ===========
 
+![Снимок экрана 2024-10-02 160848](https://github.com/user-attachments/assets/0860e47f-965a-46a0-b5ad-9a09ff6ae521)
+
 Plugin for Cotonti CMF. It replaces common date/time selection controls with
 unified pretty style jQueryUI controls.
 
-Based on plugin by Andrey Matsovkin (Macik): https://github.com/macik
-But this one has fixes and new versions of included scripts
+Authors: [Andrey Matsovkin](https://www.cotonti.com/users/Macik) (https://github.com/macik), [Alexey Kalnov](https://www.cotonti.com/users/Alex300) (https://github.com/Alex300)  
+Plugin page: https://www.cotonti.com/extensions/customization-i18n/ui_datetime
 
 Description
 -----------
@@ -33,11 +35,6 @@ Requirements
 * Works with Cotonti Siena (0.9.x branch).
 * Required jQuery to be updated to version 1.6 or higher
 * Required jQueryUI (distributed with extension or your custom build with at least datepicker and slider wigits)  
-
-Demo page
----------
-
-You can see demonstration how extension works here: [Demo page on GitHub](http://macik.github.io/cot_ui_datetime/demo.html)
 
 Version info
 ------------
