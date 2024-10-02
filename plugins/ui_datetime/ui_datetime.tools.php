@@ -19,10 +19,10 @@ if (!defined('COT_CODE') && !defined('COT_PLUG')) { die('Wrong URL ('.array_pop(
 
 $plug_name = 'ui_datetime';
 
-list($usr['auth_read'], $usr['auth_write'], $usr['isadmin']) = cot_auth('plug', $plug_name);
-cot_block($usr['isadmin']);
+list(Cot::$usr['auth_read'], Cot::$usr['auth_write'], Cot::$usr['isadmin']) = cot_auth('plug', $plug_name);
+cot_block(Cot::$usr['isadmin']);
 
-$adminhelp = $adminhelp1;
+$adminHelp = $adminhelp1 ?? '';
 
 require_once cot_incfile('forms');
 
@@ -33,5 +33,9 @@ $std_datetime = cot_selectbox_date(time(),'','testdatetime');
 $std_datetime_combined = cot_selectbox_date(time(),'combined','testdatetimecmb');
 
 $tt->parse();
-$plugin_body .= $tt->text();
+
+if (empty($pluginBody)) {
+    $pluginBody = '';
+}
+$pluginBody .= $tt->text();
 
